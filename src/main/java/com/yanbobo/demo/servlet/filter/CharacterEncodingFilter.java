@@ -15,7 +15,7 @@ import java.io.IOException;
 public class CharacterEncodingFilter implements Filter {
 
     private static final String CHARACTER_ENCODING_DEFAULT = "UTF-8";
-    
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
