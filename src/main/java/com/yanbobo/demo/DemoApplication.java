@@ -24,10 +24,11 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class DemoApplication implements TransactionManagementConfigurer {
 
-    @Resource(name="txManager2")
-    private PlatformTransactionManager txManager2;
+    @Resource(name="txManager")
+    private PlatformTransactionManager txManager;
 
     // 其中 dataSource 框架会自动为我们注入
+    //添加的是 spring-boot-starter-jdbc 依赖，框架会默认注入 DataSourceTransactionManager 实例
     @Bean(name = "txManager")
     public PlatformTransactionManager txManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
@@ -35,6 +36,7 @@ public class DemoApplication implements TransactionManagementConfigurer {
 
 
     // 创建事务管理器2
+    //添加的是 spring-boot-starter-data-jpa 依赖，框架会默认注入 JpaTransactionManager 实例
     @Bean(name = "txManager2")
     public PlatformTransactionManager txManager2(EntityManagerFactory factory) {
         return new JpaTransactionManager(factory);
@@ -44,10 +46,12 @@ public class DemoApplication implements TransactionManagementConfigurer {
     //使用默认事务
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return txManager2;
+        return txManager;
     }
 
 /*
+    //查看事务注入的哪个实例
+    //当注入多个实例的时候会报错
     @Bean
     public Object testBean(PlatformTransactionManager platformTransactionManager) {
         System.out.println(">>>>>>>>>>>>>" + platformTransactionManager.getClass().getName());

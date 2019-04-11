@@ -19,4 +19,5 @@ public interface StudentService {
 
     public abstract int delStudent(Integer id);
 
+    int insertBachStudent(List<Student> students) throws Exception;
 }

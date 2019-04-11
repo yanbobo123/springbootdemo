@@ -16,6 +16,12 @@ public class Student implements Serializable {
 
     private static final long serialVersionUID = -5999074188921335406L;
 
+    public Student() {
+    }
+    public Student(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
     private Integer age;
 
     private String name;

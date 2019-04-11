@@ -1,6 +1,7 @@
 package com.yanbobo.demo.dao;
 
 import com.yanbobo.demo.entity.Student;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,6 @@ public interface StudentDao {
     @Select("SELECT age,name FROM student")
     public abstract List<Student> selectStudentList();
 
+    @Insert("INSERT INTO student (age,name) VALUES (#{age},#{name})")
+    int insertStudent(Student student);
 }

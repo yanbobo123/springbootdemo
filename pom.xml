@@ -107,6 +107,12 @@
         </dependency>
         <!--增加对 JSP 文件的支持 end-->
 
+        <!-- FreeMarker启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
 
         <!-- mybatis -->
         <dependency>

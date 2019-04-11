@@ -20,27 +20,39 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDao studentDao;
 
-    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     @Override
     public List<Student> selectStudentList() {
         return studentDao.selectStudentList();
     }
 
-    @Transactional(readOnly = true,value = "txManager2",rollbackFor = Exception.class)
+    @Transactional(readOnly = false,value = "txManager2",rollbackFor = Exception.class)
     @Override
     public int insertStudent(Student student) {
         return 0;
     }
 
-    @Transactional(readOnly = true,value = "txManager",rollbackFor = Exception.class)
+    @Transactional(readOnly = false,value = "txManager",rollbackFor = Exception.class)
     @Override
     public int updateStudent(Student student) {
         return 0;
     }
 
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
     @Override
     public int delStudent(Integer id) {
         return 0;
+    }
+
+    @Transactional(readOnly = false,value = "txManager2",rollbackFor = Exception.class)
+    @Override
+    public int insertBachStudent(List<Student> students) throws Exception {
+        for (int i = 0 ; i < students.size(); i++){
+            /*if (i == 2){
+                throw new Exception();
+            }*/
+            studentDao.insertStudent(students.get(i));
+        }
+        return 1;
     }
 }
